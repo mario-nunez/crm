@@ -1,0 +1,13 @@
+/* Main style */
+.main-background {background-color: rgb(47, 47, 48);}
+.main-titles {color: whitesmoke;}
+.main-hr{
+    height: 1px;
+    background-color: #ccc;
+    border: none;
+}
+
+/* Dashboard style */
+.dashboard-card {background-color: rgb(238, 238, 238);}
+.dashboard-button {background-color: #bd7f9e;}
+
