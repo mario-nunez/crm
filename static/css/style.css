@@ -8,6 +8,12 @@
 }
 
 /* Dashboard style */
-.dashboard-card {background-color: rgb(238, 238, 238);}
-.dashboard-button {background-color: #bd7f9e;}
+.dashboard-card {background-color: rgb(238, 241, 165);}
+.dashboard-button {
+    background-color: #255bc6;
+    font-size: 15px;
+}
 
+.contact-info {
+    background-color: #9be1db;
+}
