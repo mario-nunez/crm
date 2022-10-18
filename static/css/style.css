@@ -8,12 +8,13 @@
 }
 
 /* Dashboard style */
-.dashboard-card {background-color: rgb(238, 241, 165);}
+.dashboard-card { background-color: #d6f2f6; }
 .dashboard-button {
     background-color: #255bc6;
     font-size: 15px;
 }
 
-.contact-info {
-    background-color: #9be1db;
-}
+/* Status style */
+#total-orders{ background-color: #781f99; }
+#orders-delivered{ background-color: #983fb9; }
+#orders-pending{ background-color: #bb4bbd; }
