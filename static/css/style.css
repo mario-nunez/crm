@@ -1,11 +1,28 @@
 /* Main style */
-.main-background {background-color: rgb(47, 47, 48);}
+.main-background {background-color: #2f2f31;}
 .main-titles {color: whitesmoke;}
 .main-hr{
     height: 1px;
     background-color: #ccc;
     border: none;
 }
+
+/* Navbar style */
+li.nav-item a:hover { background-color: #40464e !important; }
+li.nav-item a:active { background-color: #484f58 !important; }
+
+.btn-circle {
+    padding: 13px 18px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.div-nav-margin {
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
 
 /* Dashboard style */
 .dashboard-card { background-color: #d6f2f6; }
@@ -15,6 +32,7 @@
 }
 
 /* Status style */
-#total-orders{ background-color: #781f99; }
-#orders-delivered{ background-color: #983fb9; }
-#orders-pending{ background-color: #bb4bbd; }
+#total-orders{ background-color: #6e1d8c; }
+#orders-delivered{ background-color: #8f31b1; }
+#orders-out{ background-color: #a443c7; }
+#orders-pending{ background-color: #a75cc3; }

@@ -9,9 +9,9 @@
 		<div class="card card-body">
 			<h5>Customer:</h5>
 			<hr>
-			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
-			<a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete Customer</a>
-
+			<a class="btn btn-outline-info btn-sm btn-block" href="">Update Customer</a>
+			<a class="btn btn-outline-info btn-sm btn-block"
+			   href="{% url 'create-order' customer.id %}">Place order</a>
 		</div>
 	</div>
 
@@ -19,8 +19,9 @@
 		<div class="card card-body">
 			<h5>Contact Information</h5>
 			<hr>
-			<p>Email: </p>
-			<p>Phone: </p>
+			<p><strong>Name</strong>: {{customer.name}}</p>
+			<p><strong>Email</strong>: {{customer.email}}</p>
+			<p><strong>Phone</strong>: {{customer.phone}}</p>
 		</div>
 	</div>
 
@@ -28,7 +29,9 @@
 		<div class="card card-body text-white" id="total-orders">
 			<h5>Total Orders</h5>
 			<hr>
-			<h1 style="text-align: center;padding: 10px"></h1>
+			<h1 style="text-align: center;padding: 10px">
+				{{orders_count}}
+			</h1>
 		</div>
 	</div>
 </div>
@@ -37,10 +40,11 @@
 
 <div class="row">
 	<div class="col">
-		<div class="card card-body main-background">
+		<div class="card card-body">
 			<form method="get">
-		    <button class="btn btn-primary" type="submit">Search</button>
-		  </form>
+				{{my_filter.form}}
+				<button class="btn btn-primary" type="submit">Search</button>
+			</form>
 		</div>
 	</div>
 	
@@ -60,6 +64,17 @@
 					<th>Update</th>
 					<th>Remove</th>
 				</tr>
+
+				{% for order in orders %}
+					<tr>
+						<td>{{order.product}}</td>
+						<td>{{order.product.category}}</td>
+						<td>{{order.date_created}}</td>
+						<td>{{order.status}}</td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'update-order' order.id %}">Edit</a></td>
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete-order' order.id %}">Delete</a></td>
+					</tr>
+				{% endfor %}
 
 			</table>
 		</div>

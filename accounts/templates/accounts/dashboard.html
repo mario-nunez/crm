@@ -11,15 +11,18 @@
 		<h5 class="main-titles">CUSTOMERS:</h5>
 		<hr class="main-hr">
 		<div class="card card-body dashboard-card">
-			<a class="btn btn-primary  btn-sm btn-block dashboard-button" href="">Create Customer</a>
+			<a class="btn btn-primary btn-sm btn-block dashboard-button"
+			   href="{% url 'create-customer' %}">Create Customer</a>
 			<table class="table table-sm">
 				<tr>
+					<th></th>
 					<th>Customer</th>
 					<th>Phone</th>
 				</tr>
 
 				{% for c in customers %}
 					<tr>
+						<td><a class="btn btn-sm btn-info" href="{% url 'customer' c.id %}">View</a></td>
 						<td>{{c.name}}</td>
 						<td>{{c.phone}}</td>
 					</tr>
@@ -33,10 +36,10 @@
 		<h5 class="main-titles">LAST 5 ORDERS</h5>
 		<hr class="main-hr">
 		<div class="card card-body dashboard-card">
-			<a class="btn btn-primary  btn-sm btn-block dashboard-button" href="">Create Order</a>
 			<table class="table table-sm">
 				<tr>
 					<th>Product</th>
+					<th>Customer</th>
 					<th>Date Orderd</th>
 					<th>Status</th>
 					<th>Update</th>
@@ -46,10 +49,11 @@
 				{% for order in orders %}
 					<tr>
 						<td>{{order.product}}</td>
+						<td>{{order.customer}}</td>
 						<td>{{order.date_created}}</td>
 						<td>{{order.status}}</td>
-						<td><a href="">Edit</a></td>
-						<td><a href="">Delete</a></td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'update-order' order.id %}">Edit</a></td>
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete-order' order.id %}">Delete</a></td>
 					</tr>
 				{% endfor %}
 		
