@@ -10,17 +10,35 @@
 /* Navbar style */
 li.nav-item a:hover { background-color: #40464e !important; }
 li.nav-item a:active { background-color: #484f58 !important; }
-
 .btn-circle {
     padding: 13px 18px;
     border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
     text-align: center;
 }
+.hello-msg{ 
+    color: whitesmoke;
+    font-size: 15px;
+    margin-right: 15px;
+}
+
+a.hello-msg:hover {
+    color: whitesmoke;
+    text-decoration: none !important;
+}
+
+span a:hover { 
+    background-color: #40464e !important;
+}
+span a:active {
+    background-color: #484f58 !important;
+}
+
 
 .div-nav-margin {
     margin-left: 5px;
     margin-right: 5px;
-
 }
 
 
