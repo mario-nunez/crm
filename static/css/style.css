@@ -54,3 +54,19 @@ span a:active {
 #orders-delivered{ background-color: #8f31b1; }
 #orders-out{ background-color: #a443c7; }
 #orders-pending{ background-color: #a75cc3; }
+
+.chartBox {
+    width: 150px;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    td:nth-child(2) {
+      display:none;
+    }
+  }
+
+
+
+
