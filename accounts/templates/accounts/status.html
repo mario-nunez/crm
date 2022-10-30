@@ -29,19 +29,6 @@
 
 	<div class="col">
 		<div class="col-md">
-			<div class="card text-center text-white  mb-3" id="orders-out">
-			  	<div class="card-header">
-			  		<h5 class="card-title">Out of delivery</h5>
-			  	</div>
-			  	<div class="card-body">
-			    	<h3 class="card-title">{{orders_out_delivery}}</h3>
-			  	</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="col">
-		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="orders-pending">
 			  	<div class="card-header">
 			  		<h5 class="card-title">Orders Pending</h5>
@@ -52,4 +39,78 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="chartBox">
+				<canvas id="myChart"></canvas>
+			</div>
+		</div>
+	</div>
+
 </div>
+
+
+<script>
+	// Gather data
+	const d = []
+	d.push(parseInt('{{orders_pending}}'))
+	d.push(parseInt('{{orders_delivered}}'))
+	d.push(parseInt('{{orders_out_delivery}}'))
+
+	// setup block
+	const data = {
+			labels: ['Pending', 'Delivered', 'Out of delivery'],
+			datasets: [{
+				label: 'Orders',
+				data: d,
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)'
+				],
+				borderColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderWidth: 1
+			}]
+	};
+	
+	// config block
+	const config = {
+		type: 'pie',
+		data,
+		options: {
+			plugins: {
+				title: {
+					display: true,
+					color: 'white',
+					font: {
+						size: 14,
+						weight: 'bold'
+					},
+					position: 'top',
+					text: 'Orders chart',
+				},
+				legend: {
+					display: false,
+					position: 'right'
+				}
+			}
+    }
+	};
+	
+	// render block
+	const ctx = document.getElementById('myChart').getContext('2d');
+	const myChart = new Chart(
+		ctx,
+		config);
+	</script>

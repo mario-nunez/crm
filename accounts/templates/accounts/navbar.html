@@ -5,22 +5,35 @@
     <img src="{% static 'images/crm-logo.png' %}" alt="CRM logo"
          width="130" height="40">
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  {% if request.user.is_staff %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  {% else %}
+    <li class="nav-item active div-nav-margin">
+      <a class="hello-msg btn-circle" href="{% url 'account' %}"><i class="fa fa-cog"></i> Settings</a>
+    </li>
+  {% endif %}
+
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active div-nav-margin">
-        <a class="nav-link btn-circle" href="{% url 'home' %}">Dashboard</a>
-      </li>
-      <li class="nav-item active div-nav-margin">
-        <a class="nav-link btn-circle" href="{% url 'products' %}">Products</a>
-      </li>
+      {% if request.user.is_staff %}
+        <li class="nav-item active div-nav-margin">
+          <a class="nav-link btn-circle" href="{% url 'home' %}">Dashboard</a>
+        </li>
+        <li class="nav-item active div-nav-margin">
+          <a class="nav-link btn-circle" href="{% url 'products' %}">Products</a>
+        </li>
+      {% endif %}
     </ul>
   </div>
 
-  <span class="hello-msg">Hello, {{request.user}}</span>
-  <span><a class="hello-msg btn-circle" href="{% url 'logout' %}">Logout</a></span>
+  <span class="hello-msg"><i class="fa fa-hand-paper-o" aria-hidden="true"></i> Hello, {{request.user}}</span>
+  <span>
+    <a class="hello-msg btn-circle" href="{% url 'logout' %}">
+      <i class="fa fa-sign-out"></i> Logout
+    </a>
+  </span>
 
 
 </nav>
