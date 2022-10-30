@@ -9,9 +9,14 @@
 		<div class="card card-body">
 			<h5>Customer:</h5>
 			<hr>
-			<a class="btn btn-outline-info btn-sm btn-block" href="">Update Customer</a>
 			<a class="btn btn-outline-info btn-sm btn-block"
-			   href="{% url 'create-order' customer.id %}">Place order</a>
+			   href="{% url 'update-customer' customer.id %}">
+				<i class="fa fa-wrench" aria-hidden="true"></i> Update Customer
+			</a>
+			<a class="btn btn-outline-info btn-sm btn-block"
+			   href="{% url 'create-order' customer.id %}">
+			   <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Place order
+			</a>
 		</div>
 	</div>
 
@@ -43,7 +48,9 @@
 		<div class="card card-body">
 			<form method="get">
 				{{my_filter.form}}
-				<button class="btn btn-primary" type="submit">Search</button>
+				<button class="btn btn-primary" type="submit">
+					<i class="fa fa-search" aria-hidden="true"></i> Search
+				</button>
 			</form>
 		</div>
 	</div>
@@ -71,8 +78,16 @@
 						<td>{{order.product.category}}</td>
 						<td>{{order.date_created}}</td>
 						<td>{{order.status}}</td>
-						<td><a class="btn btn-sm btn-info" href="{% url 'update-order' order.id %}">Edit</a></td>
-						<td><a class="btn btn-sm btn-danger" href="{% url 'delete-order' order.id %}">Delete</a></td>
+						<td>
+							<a class="btn btn-sm btn-info" href="{% url 'update-order' order.id %}">
+								<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+							</a>
+						</td>
+						<td>
+							<a class="btn btn-sm btn-danger" href="{% url 'delete-order' order.id %}">
+								<i class="fa fa-trash-o fa-lg"></i> Delete
+							</a>
+						</td>
 					</tr>
 				{% endfor %}
 

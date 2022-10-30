@@ -55,9 +55,6 @@ def logout_user(request):
 def home(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
-
-    total_customers = customers.count()
-
     total_orders = orders.count()
     orders_delivered = orders.filter(status='Delivered').count()
     orders_pending = orders.filter(status='Pending').count()
@@ -102,7 +99,26 @@ def account_settings(request):
         if form.is_valid():
             form.save()
 
-    context = { 'form': form }
+    context = {
+        'form': form,
+        'customer': customer
+    }
+    return render(request, 'accounts/account_settings.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def update_customer(request, pk):
+    customer = Customer.objects.get(id=pk)
+    form = CustomerForm(instance=customer)
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, request.FILES, instance=customer)
+        if form.is_valid():
+            form.save()
+
+    context = {
+        'form': form,
+        'customer': customer
+    }
     return render(request, 'accounts/account_settings.html', context)
 
 
@@ -165,7 +181,7 @@ def update_order(request, pk):
             form.save()
             return redirect('/') 
     context = { 'form': form }
-    return render(request, 'accounts/order_form.html', context)
+    return render(request, 'accounts/order_update_form.html', context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])

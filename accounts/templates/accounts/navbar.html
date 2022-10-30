@@ -11,7 +11,7 @@
     </button>
   {% else %}
     <li class="nav-item active div-nav-margin">
-      <a class="hello-msg btn-circle" href="{% url 'account' %}">Settings</a>
+      <a class="hello-msg btn-circle" href="{% url 'account' %}"><i class="fa fa-cog"></i> Settings</a>
     </li>
   {% endif %}
 
@@ -28,8 +28,12 @@
     </ul>
   </div>
 
-  <span class="hello-msg">Hello, {{request.user}}</span>
-  <span><a class="hello-msg btn-circle" href="{% url 'logout' %}">Logout</a></span>
+  <span class="hello-msg"><i class="fa fa-hand-paper-o" aria-hidden="true"></i> Hello, {{request.user}}</span>
+  <span>
+    <a class="hello-msg btn-circle" href="{% url 'logout' %}">
+      <i class="fa fa-sign-out"></i> Logout
+    </a>
+  </span>
 
 
 </nav>
