@@ -5,22 +5,25 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="card card-body">
-			<form action="" method="POST">
+            <form action="" method="POST">
                 {% csrf_token %}
-                {{ formset.management_form }}
-                {% for form in formset %}
-                    {{form}}
-                    <hr>
-                {% endfor %}
-                
+                <table border="1">
+                    {{ form }}
+                </table>
+                <br>
+                <a class="btn btn-sm btn-warning"
+                   href="{% url 'create-tag' %}">
+                    <i class="fa fa-pencil-square-o"></i> Create Tag
+                </a>
+
                 <button type="submit" class="btn btn-sm btn-info">
                     <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Submit
                 </button>
+                    
             </form>
 
 		</div>
 	</div>
 </div>
-
 
 {% endblock %}

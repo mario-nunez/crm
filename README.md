@@ -5,14 +5,16 @@
 # Customer Relationship Management (CRM)
 
 CRM stands for Customer Relationship Management. It's a technology used to manage interactions with customers
-and potential customers. A CRM system helps organisations build customer relationships and streamline processes
-so they can increase sales, improve customer service, and increase profitability.
+and potential customers.
 
-This project is based on Dennis Ivy (@divanov11) crash course *Customer Management App* but I performed multiple changes like:
-- Add some extra functionalities
-- Add icons
-- Add graphs
-- Change styles
+This app stores customer information in a database kind of like a CRM.
+It has two types of users: admin and customers. Depending on the role the users will be able to create, edit and delete orders and products. The search of specific information is also available. Users will be able to edit their account settings and upload a photo to their profile.
+
+This project is based on Dennis Ivy (@divanov11) crash course *Customer Management App*, but several changes has been made:
+- Functionalities to manage products and tags added
+- Graph added using *Chart.js*
+- Icons added using *Font Awesome*
+- Styles changed
 
 ## Areas involved
 
@@ -20,7 +22,6 @@ This project is based on Dennis Ivy (@divanov11) crash course *Customer Manageme
 - Data storage
 - Data parsing
 - Data visualization
-
 
 ## Steps to run this project
 

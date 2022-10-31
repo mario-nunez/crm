@@ -58,15 +58,3 @@ span a:active {
 .chartBox {
     width: 150px;
 }
-
-
-
-@media only screen and (max-width: 800px) {
-    td:nth-child(2) {
-      display:none;
-    }
-  }
-
-
-
-

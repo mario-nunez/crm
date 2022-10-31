@@ -9,12 +9,26 @@
             <div class="card card-body">
                 <h5>Products</h5>
             </div>
+            
             <div class="card card-body dashboard-card">
+                <tr>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-sm btn-info" href="{% url 'create-product' %}">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create Product
+                        </a>
+                    </td>
+                </tr>
+
                 <table class="table">
                     <tr>
                         <th>Product</th>
                         <th>Category</th>
                         <th>Price</th>
+                        <th>Update</th>
+					    <th>Remove</th>
                     </tr>
 
                     {% for p in products %}
@@ -22,6 +36,16 @@
                             <td>{{p.name}}</td>
                             <td>{{p.category}}</td>
                             <td>{{p.price}}</td>
+                            <td>
+                                <a class="btn btn-sm btn-info" href="{% url 'update-product' p.id %}">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-danger" href="{% url 'delete-product' p.id %}">
+                                    <i class="fa fa-trash-o fa-lg"></i> Delete
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                     
