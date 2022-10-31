@@ -14,6 +14,12 @@ urlpatterns = [
     path('account/', views.account_settings, name="account"),
     
     path('products/', views.products, name="products"),
+    path('create-product/', views.create_product, name="create-product"),
+    path('update-product/<str:pk>/', views.update_product, name="update-product"),
+    path('delete-product/<str:pk>/', views.delete_product, name="delete-product"),
+
+    path('create-tag/', views.create_tag, name="create-tag"),
+
     path('customer/<str:pk>/', views.customer, name="customer"),
     path('update-customer/<str:pk>/', views.update_customer, name="update-customer"),
 

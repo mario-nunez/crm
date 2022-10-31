@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 from .models import Product, Order, Customer
-from .forms import OrderForm, CustomerForm, CreateUserForm
+from .forms import OrderForm, CustomerForm, CreateUserForm, ProductForm, TagForm
 from .filters import OrderFilter
 from .decorators import unauthenticated_user, allowed_users, admin_only
 
@@ -59,6 +59,7 @@ def home(request):
     orders_delivered = orders.filter(status='Delivered').count()
     orders_pending = orders.filter(status='Pending').count()
     orders_out_delivery = orders.filter(status='Out of delivery').count()
+    last_orders = orders.order_by('-date_created')[0:5]
 
     context = {
         'orders': orders,
@@ -66,7 +67,8 @@ def home(request):
         'total_orders': total_orders,
         'orders_delivered': orders_delivered,
         'orders_pending': orders_pending,
-        'orders_out_delivery': orders_out_delivery
+        'orders_out_delivery': orders_out_delivery,
+        'last_orders': last_orders
     }
     return render(request, 'accounts/dashboard.html', context)
 
@@ -125,12 +127,58 @@ def update_customer(request, pk):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def products(request):
-    products = Product.objects.all()
-    return render(
-        request,
-        'accounts/products.html',
-        {'products': products}
-    )
+    products = Product.objects.all()   
+    context = {'products': products}
+    return render(request, 'accounts/products.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def create_product(request):
+    form = ProductForm()
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('products')
+    
+    context = {'form': form}
+    return render(request, 'accounts/product_form.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def update_product(request, pk):
+    product = Product.objects.get(id=pk)
+    form = ProductForm(instance=product)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('products') 
+    context = { 'form': form }
+    return render(request, 'accounts/product_form.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def delete_product(request, pk):
+    product = Product.objects.get(id=pk)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('products') 
+    context = { 'item': product }
+    return render(request, 'accounts/product_delete.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def create_tag(request):
+    form = TagForm()
+    if request.method == 'POST':
+        form = TagForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('products')
+    
+    context = {'form': form}
+    return render(request, 'accounts/tag_form.html', context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
